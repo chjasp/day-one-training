@@ -1,0 +1,32 @@
+.tablewrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 800px;
+    background-color: grey;
+}
+
+tbody {
+    background: white;
+}
+
+td {
+    padding: 1rem;
+    border: 2px solid black;
+}
+
+.highlighted {
+    background: grey;
+}
+
+.box {
+    background: white;
+    height: 150px;
+    width: 150px;
+    border: 5px solid yellow;
+    position: absolute;
+}

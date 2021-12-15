@@ -1,0 +1,105 @@
+--- AGENDA ---
+
+1. Today: Front-end
+2. Friday: Back-end & deployment
+
+--- STYLE ---
+
+1. The very basics in the beginning
+2. Code, code, code create a react app from scratch (Collaboratively)
+3. Hope for the "Aha-moment"
+
+--- THEORY --- 
+
+1. HTML (Structure)
+2. CSS (Styling)
+3. JavaScript (Functionality)
+
+--- SETUP ---
+
+1. Install NodeJS 
+- Follow instructions on https://nodejs.dev/
+2. Create React App
+- npx create-react-app [name of app]
+
+--- BASICS ---
+
+1. Components in general (X)
+2. Functions in components (X)
+3. Display dynamic content (X)
+4. State (X)
+
+--- PRACTICE 1: SENSOR STATUS ---
+
+1. Store status colors ["Green", "Yellow", "Red"] (X)
+2. Display: [Green] (X)
+3. Display: [Green][Yellow][Red] (X)
+4. Display: [Green][Yellow][Red] Selected: Red
+
+--- PRACTICE 1: CSS ---
+
+1. Display: [Green]   Selected: Red (50px)
+            [Yellow]
+            [Red]
+2. Display: [Green]   Selected: Red (50px; Background=Red)
+            [Yellow]
+            [Red]
+
+--- RECAP ---
+
+--- [OPTIONAL] BREAK ---
+
+--- PRACTICE 2: REPORTS TABLE ---
+
+1. Restructure project
+2. Install packages
+3. Routing
+- npm install react-router-dom
+- import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+- {/* Here comes routing functionality */}
+      <Router>
+        {/* Take a look at URL */}
+        <Routes>
+          {/* Match a path */}
+          <Route path="/center" element={<Center />} />
+          <Route path="/reportsf" element={<ReportsNFilters />} />
+          <Route path="/" element={<Reports />} />
+        </Routes>
+      </Router>
+4. JS-Objects & imports (X)
+5. Intro to tables (X)
+- <table>
+    <thead>
+      <tr>
+        <th>Column Header</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Column Data</td>
+      </tr>
+    </tbody>
+  </table>
+
+6. Create a centered (!) reports table (width: 800px)
+7. Create a button that starts at row 1, highlights the next row onClick, then starts again at row 1
+8. Greet user only on initial page load
+- useEffect(() => {
+  }, []);
+9. Console.log the unique DUE DATE-column values on the initial page load
+10. [Optional] onClick duedate, open a filter menu (white box, ca. 150px)
+11. [Optional] Insert the unique column values in the menu
+12. [Optional] Make the filter values onClick select all matching rows
+
+
+
+
+
+
+
+
+

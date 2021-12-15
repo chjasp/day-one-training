@@ -1,0 +1,26 @@
+.table-wrapper {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+    /* Along the flex-direction axis: X */
+    justify-content: center;
+    align-items: center;
+}
+
+.table-outer {
+    width: 60px;
+    background: grey;
+}
+
+.data-row {
+    background-color: white;
+}
+
+.data-row.highlighted {
+    background-color: grey;
+}
+
+td {
+    font-size: 5px;
+}

@@ -1,0 +1,19 @@
+.wrapper {
+    height: 50vh;
+    background-color: grey;
+
+    display: flex;
+    flex-direction: row;
+    /* Along the flex-direction axis: X */
+    justify-content: center;
+    align-items: center;
+}
+
+.colors {
+    margin-right: 100px;
+    border: 5px solid black;
+}
+
+.mode {
+    background-color: red;
+}
