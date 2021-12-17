@@ -1,0 +1,173 @@
+--- GOT STUCK? THOSE TUTORIALS MAY HELP: ---
+Setup and basics of express: https://www.youtube.com/watch?v=JlgKybraoy4&t=542s
+Setup and usage of MySQL with express: https://www.youtube.com/watch?v=W8jySpfRUDY
+Usage of knex: https://www.youtube.com/watch?v=lgBrR9Mvork&t=752s
+-- JFYI: The configuration file for the DB-conenction is slightly different from ours
+-- since we are using MySQL vs. SQLite used in the tutorial.
+-- For learning how knex works, this does not make a difference
+CORS: https://www.youtube.com/watch?v=PNtFSVU-YTI&t=211s
+Async and await: https://www.youtube.com/watch?v=V_Kr9OSfDeU
+Setting up MySQL and a NodeJS backend to Cloud SQL & Run: https://www.youtube.com/watch?v=_w_idf928WY&t=669s
+Deploy React frontend deployment to Cloud Run: https://www.youtube.com/watch?v=GIM5irN4Ix0&t=534s
+
+--- AGENDA ---
+
+1. Wednesday: Front-end
+2. Today: Back-end & deployment
+
+--- THEORY --- 
+
+1. NodeJS, Express, MySQL (Back-end)
+2. Google Cloud Run, SQL (Deployment)
+3. Datamap (Maintenance)
+
+--- SETUP ---
+
+1. Install NodeJS (we already did that last time)
+- Check it with "node -v"
+- Follow instructions on https://nodejs.dev/
+- Why NodeJS again?!
+-- Runtime environment for JavaScript => Provide all the settings we need to execute our code (environment variables, libraries)
+-- Usually: JS is run in browser
+-- Here: JS is run outside the browser (=> on the server)
+-- Difference?: NodeJS cannot work with HTML tags etc.
+
+2. Prepare the installation of npm-libraries
+- Run "npm init"
+
+3. Install THE most important framework/library for us: Express
+- Why? Geared towards web application use cases
+- How? Run "npm i express"
+
+4. Create an "entry-point" for the backend
+- Create "index.js" file in top-level directory
+
+5. Check if index.js works (and add to script)
+
+--- BASICS ---
+
+1. Setup a server
+2. HTTP-request types
+3. How to tell the server what to do?
+4. How to pass parameters?
+5. Compare to DQR
+
+--- BACK OF THE BACKEND: SQL-(Connection) ---
+
+1. Intro to setup 
+- How to populate? 
+- What does this look like on GCP?
+2. How to connect?
+- npm i promise-mysql
+3. Create "connection.js"-file
+4. Create connection pool
+module.exports = mysql.createPool({
+  connectionLimit: 100,
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+});
+5. Create .env-file
+HOST=127.0.0.1
+USER=root
+PASSWORD=Dqradar1712#
+DATABASE=dqrdb
+6. Install dotenv
+- npm install dotenv
+7. Make a request
+const getData = () => {
+  let pool = mysql.createPool({
+    connectionLimit: 100,
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+  });
+
+  pool.query("SELECT * FROM reports", function (err, rows, fields) {
+    console.log(rows);
+  });
+}
+
+getData()
+
+8. Async and await
+- Synchronous programs => From top to bottom, no matter what
+- Asynchronous programs => It depends ...
+- Why? 
+-- What takes time takes resources 
+-- Better performance 
+9. Make SQL simpler (knex)
+- Install knex
+- Create new file
+- Import pool
+const knex = require("knex")(require("../knexfile"));
+10. Make knex-call
+const getReports = () => {
+  const result = knex.select("*").from("reports");
+  console.log(result)
+};
+
+--- RECAP ---
+
+--- [OPTIONAL] BREAK ---
+
+--- GOING BACK TO THE FRONT ---
+
+getReports()
+11. Export the function
+module.exports = {
+  getReports
+};
+12. Import the function
+reportStorage = require("./reportStorage");
+13. write function getReports
+server.get("/reports", async (req, res) => {
+    let reports = await reportStorage.getReports()
+    console.log(reports)
+    res.send(reports)
+})
+14. Write getSpecificReports function
+const getSpecificReport = async (req) => {
+  const result = await knex.select("*").from("reports").where("dqr_id", req.query.id);
+  return result
+}
+15. Checkout Front-end (IntegratedReports)
+16. Install CORS
+- npm install cors
+17. import CORS:
+- cors = require("cors")
+18. Make server use CORS
+- server.use(cors());
+
+--- PAGINATION ---
+
+--- DEPLOYMENT ---
+
+// MySQL GCP Instance
+// Backend: Cloudrun -> app.cloundweohouwe/reports
+// Frontend: Cloudrun 
+
+1. Add dockerfile to server
+2. Change .env content to Cloud SQL connection details
+3. Add a socketpath to module exports
+4. Add dockerfile to client
+5. Add nginx config
+6. Make sure you have the permission to execute deploy.sh
+7. Deploy server to cloud run
+8. Copy path to server into client 
+9. Make sure you have the permission to execute deploy.sh
+10. Deploy client
+
+
+--- DATAMAP ---
+
+
+
+
+
+
+
+
+

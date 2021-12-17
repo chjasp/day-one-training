@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Center from "./pages/Center";
 import Reports from "./pages/Reports";
+import IntegratedReports from "./pages/IntegratedReports";
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,7 +20,7 @@ function App() {
           {/* Match a path */}
           <Route path="/center" element={<Center />} />
           <Route path="/reportsf" element={<ReportsNFilters />} />
-          <Route path="/" element={<Reports />} />
+          <Route path="/" element={<IntegratedReports />} />
         </Routes>
       </Router>
     </div>
